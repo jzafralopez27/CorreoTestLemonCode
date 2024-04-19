@@ -1,6 +1,5 @@
 Ejercicio 1
 
-Creo la clase EmailValidator, en la cual configuro las condiciones para que se considere un mail válEjercicio 1
 
 Creo la clase EmailValidator, en la cual configuro las condiciones para que se considere un mail válido. Creo que hay una función propia para que C# lo considere un correo o no, pero he querido hacerlo así.
 
@@ -19,11 +18,10 @@ Y ahora podemos comprobar que ámbos tests dan Ok, unos emails son válidos y ot
 
 ![TestOk](https://github.com/jzafralopez27/CorreoTestLemonCode/assets/149962801/83f8b5f5-37ca-44bd-977e-24dc2c3b0e0d)
 
-
 Ejercicio 2
 
 Pues básicamente le añado dos métodos más a la clase CorreoMessageShould, uno que me comprueba si hay correos duplicados y otra que me hace realmente el Test, con su Arrange, Act y Assert. 
 ![Captura de pantalla 2024-04-19 114322](https://github.com/jzafralopez27/CorreoTestLemonCode/assets/149962801/fd143043-949f-4335-8c1f-bd3c5bd71ec8)
 
 Y ahora comprobamos que los 3 tests nos dan Ok.
-![Captura de pantalla 2024-04-19 114552](https://github.com/jzafralopez27/CorreoTestLemonCode/assets/149962801/366a55e3-cbe3-4a8a-94e4-f0a6aa3fdd92)ido. Creo que hay una función propia para que C# lo considere un correo o no, pero he querido hacerlo así.
+![Captura de pantalla 2024-04-19 114552](https://github.com/jzafralopez27/CorreoTestLemonCode/assets/149962801/366a55e3-cbe3-4a8a-94e4-f0a6aa3fdd92)
