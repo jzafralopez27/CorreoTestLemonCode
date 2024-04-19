@@ -1,4 +1,5 @@
 using CorreoTestLemonCode;
+using Moq;
 
 namespace CorreoMessage.Test
 {
@@ -10,6 +11,7 @@ namespace CorreoMessage.Test
         {
             //Arrange
             var mailValidator = new EmailValidator();
+            var correoValidatorMock = new Mock<EmailValidator>();
 
             //Act de los que se espera que sin problemas
             var mockEmail = "jorge@gmail.com";
@@ -17,9 +19,9 @@ namespace CorreoMessage.Test
             var mockEmail3 = "lemoncode@hotmail.com";
 
             //Assert de los que se esperan que sin problemas
-            Assert.IsTrue(mailValidator.ValidarCorreo(mockEmail));
-            Assert.IsTrue(mailValidator.ValidarCorreo(mockEmail2));
-            Assert.IsTrue(mailValidator.ValidarCorreo(mockEmail3));
+            Assert.IsTrue(mailValidator.ValidateMail(mockEmail));
+            Assert.IsTrue(mailValidator.ValidateMail(mockEmail2));
+            Assert.IsTrue(mailValidator.ValidateMail(mockEmail3));
         }
 
         [TestMethod]
@@ -34,13 +36,46 @@ namespace CorreoMessage.Test
             var mockEmailFalse3 = "lemoncode@limon.com";
 
             //Assert de los que esperan que den error
-            Assert.IsFalse(mailValidator.ValidarCorreo(mockEmailFalse1));
-            Assert.IsFalse(mailValidator.ValidarCorreo(mockEmailFalse2));
-            Assert.IsFalse(mailValidator.ValidarCorreo(mockEmailFalse3));
+            Assert.IsFalse(mailValidator.ValidateMail(mockEmailFalse1));
+            Assert.IsFalse(mailValidator.ValidateMail(mockEmailFalse2));
+            Assert.IsFalse(mailValidator.ValidateMail(mockEmailFalse3));
+        }
+
+        
+        // Hago el método un método aparte para comprobar si hay correos duplicados
+        private bool HasDuplicates(List<string> correosValidados)
+        {
+            HashSet<string> set = new HashSet<string>(); // Uso el HashSet, una colección que no permite elementos duplicados.
+
+            foreach (var mail in correosValidados)
+            {
+                if (!set.Add(mail))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        [TestMethod]
+        public void Return_False_When_Mail_Duplicated()
+        {
+            //Arrange
+            var duplicatedMails = new List<string> { "jorge@gmail.com", "prueba@yahoo.com", "lemoncode@hotmail.com", "jorge@gmail.com" };
+            var notDuplicatedMails = new List<string> { "jorge@gmail.com", "prueba@yahoo.com", "lemoncode@hotmail.com" };
+
+            //Act
+            var hasDuplicates1 = HasDuplicates(duplicatedMails);
+            var hasDuplicates2 = HasDuplicates(notDuplicatedMails);
+
+            // Assert
+            Assert.IsTrue(hasDuplicates1);
+            Assert.IsFalse(hasDuplicates2);
         }
 
 
-           
-        
+
+
+
     }
 } 
